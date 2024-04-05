@@ -9,6 +9,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const CLIENT_DETAILS = _Paths.CLIENT_DETAILS;
   static const WORK_DETAILS = _Paths.WORK_DETAILS;
+  static const CLIENT_WORK = _Paths.CLIENT_WORK;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const CLIENT_DETAILS = '/client-details';
   static const WORK_DETAILS = '/work-details';
+  static const CLIENT_WORK = '/client-work';
 }

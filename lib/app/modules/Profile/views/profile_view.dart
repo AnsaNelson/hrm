@@ -1,5 +1,6 @@
 // profile_view.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/modules/home/views/home_view.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
 
@@ -10,85 +11,180 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+          onTap: ()=>Get.to(HomeView()),
+          child: Icon(Icons.arrow_back)),
         title: Text('Profile Page'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 60.0,
-              backgroundImage: AssetImage('asset/image/pic.jpg'), // Replace with your image path
+      body: const SingleChildScrollView(
+        child: Center(
+          child:  Column(
+            children: [CircleAvatar(
+              radius: 80,
+              // child: Image.asset('asset/image/pic.jpg'),
             ),
-            SizedBox(height: 20),
-            buildEditableTextField('Name', controller.nameController),
-            SizedBox(height: 12),
-            buildEditableTextField('Email ID', controller.emailController),
-            SizedBox(height: 12),
-            buildNonEditableTextField('Joining Date', controller.joiningDate),
-            SizedBox(height: 12),
-            buildNonEditableTextField('Date of Birth', controller.dob),
-            SizedBox(height: 12),
-            buildNonEditableTextField('Salary', controller.salary),
-            SizedBox(height: 12),
-            buildEditableTextField('Phone Number', controller.phoneNumberController),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                controller.updateProfile();
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Set the button color to green
-                minimumSize: Size(40, 48), // Set the minimum width and height
-              ),
-              child: Text(
-                'Update',
-                style: TextStyle(fontSize: 16), // Set the button text size
-              ),
-            ),
-          ],
+             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height:70,
+                  child: Card(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Name:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Ansa Nelson",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                 SizedBox(
+                  height: 70,
+                   child: Card(
+                     child: Row(
+                      children: [
+                        Text(
+                          "Email:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "ansa@gmail.com",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                                       ),
+                   ),
+                 ),
+                SizedBox(height: 10),
+                 SizedBox(
+                  height: 70,
+                   child: Card(
+                     child: Row(
+                      children: [
+                        Text(
+                          "Address:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Kurisingal House ,Munambam",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                                       ),
+                   ),
+                 ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 70,
+                  child: Card(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Date of Birth:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "05/03/2002",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                 SizedBox(
+                  height: 70,
+                   child: Card(
+                     child: Row(
+                      children: [
+                        Text(
+                          "Joining Date:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10), 
+                        Text(
+                          "10/01/2024",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                                       ),
+                   ),
+                 ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 70,
+                  child: Card(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Salary:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10), 
+                        Text(
+                          "10000",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 70,
+                  child: Card(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Phone Number",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "7306310670",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 70,
+                  child: Card(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Password:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10), // Adjust the width as needed
+                        Text(
+                          "ansa@123",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+            
+            ]
+          ),
         ),
-      ),
-    );
-  }
+      )
 
-  Widget buildEditableTextField(String label, TextEditingController controller) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue, width: 2.0),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey, width: 1.0),
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-        fillColor: Colors.grey[200],
-        filled: true,
-      ),
-    );
-  }
-
-  Widget buildNonEditableTextField(String label, RxString value) {
-    return TextField(
-      readOnly: true,
-      controller: TextEditingController(text: value.value),
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue, width: 2.0),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey, width: 1.0),
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-        fillColor: Colors.grey[200],
-        filled: true,
-      ),
     );
   }
 }

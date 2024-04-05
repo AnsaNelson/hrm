@@ -67,7 +67,7 @@ class HomeController extends GetxController {
         Get.toNamed('/work-details');
         break;
       case 'Logout':
-        // Add logout logic here
+        Get.toNamed('/login');
         break;
       default:
         break;

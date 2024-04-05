@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/modules/ClientWork/views/client_work_view.dart';
 import 'package:get/get.dart';
-import 'package:data_table_2/data_table_2.dart';
 
 import '../controllers/work_details_controller.dart';
 
@@ -12,58 +12,27 @@ class WorkDetailsView extends GetView<WorkDetailsController> {
         title: const Text('WorkDetailsView'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(width: 2.0, color: Colors.black), // Thick border around the DataTable
+      body: ListView.builder(
+        itemCount: controller.clientList.length,
+        itemBuilder: (context, index) {
+       return Container(
+        height: 80,
+        width: 30,
+         child: Card(
+          child: Column(
+            children: [
+         ListTile(
+          title: Text(controller.clientList[index].name),
+          subtitle: Text(controller.clientList[index].work),
+          onTap:()=> Get.to(ClientWorkView()),
+          trailing: Text(controller.clientList[index].number),
+         )
+            // Center(child: Text(controller.clientList[index].name))
+          ]
+          ,) 
           ),
-          child: DataTable2(
-            columnSpacing: 12,
-            horizontalMargin: 12,
-            minWidth: 600,
-            columns: [
-              DataColumn2(
-                label: Text('Client Name'),
-                size: ColumnSize.L,
-              ),
-              DataColumn2(
-                label: Text('Date'),
-                size: ColumnSize.L,
-              ),
-              DataColumn2(
-                label: Text('Work Status'),
-                size: ColumnSize.S,
-              ),
-            ],
-            rows: controller.workDetailsList.map((work) {
-              return DataRow(
-                cells: [
-                  DataCell(Text(work['client'].toString())),
-                  DataCell(Text(work['date'].toString())),
-                  DataCell(_buildStatusButton(work)),
-                ],
-              );
-            }).toList(),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStatusButton(Map<String, dynamic> work) {
-    return ElevatedButton(
-      onPressed: () {
-        // Handle button press here
-        // Update the work status to complete and change the color to green
-        work['complete'] = true;
-        // Update the UI
-        controller.update();
-      },
-      style: ElevatedButton.styleFrom(
-        primary: work['complete'] ? Colors.green : null,
-      ),
-      child: Text('Pending'),
+       );
+      })
     );
   }
 }

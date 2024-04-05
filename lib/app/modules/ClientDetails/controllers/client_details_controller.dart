@@ -3,50 +3,38 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ClientController extends GetxController {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController businessNameController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
-  String selectedOption = 'Social Media Ads'; // Default value for the dropdown
-  DateTime? selectedDate; // Property to store the selected date
+  RxList<Client> clientList = <Client>[
+    Client('John Doe','app','730888888'),
+    Client('Jane Doe','logo','24442211344'),
+    Client('Alice Smith','web','332244555'),
+  ].obs;
 
-  List<String> dropdownOptions = [
-    'Social Media Ads',
-    'Logos',
-    'Sign Board',
-    'Mobile Application',
-    'Brochure',
-    'Flyer',
-    'Packaging',
-    'Online Promotion',
-    'Developing Ideas',
-    'Website Development',
-    'YouTube Promotion ',
-    'Digital Monetization',
-    'Business/corporate',
-    'Poster',
-    'Business Cards',
-    'News Paper Ads',
-    'Banners',
-    'Hordings',
-    'SEO/SEM',
-    'Google Ads',
-    'B2B Family',
-    'Admin Support',
-    'eCommerce Website',
-    'Social Media Website',
-    'Personal Website',
-  ];
+  final count = 0.obs;
 
-  void submitForm() {
-    // Implement your form submission logic here
-    print('Name: ${nameController.text}');
-    print('Business Name: ${businessNameController.text}');
-    print('Address: ${addressController.text}');
-    print('Phone Number: ${phoneNumberController.text}');
-    print('Selected Option: $selectedOption');
-    if (selectedDate != null) {
-      print('Selected Date: $selectedDate');
-    }
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
   }
 }
+
+class Client {
+  final String name;
+  final String work;
+  final String number;
+
+  Client(this.name, this.work, this.number);
+}
+ 
+  
+
+

@@ -7,6 +7,7 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome...'),
@@ -47,7 +48,12 @@ class HomeView extends GetView<HomeController> {
                         child: Container(
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
-                            color: controller.defaultColor,
+                             gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(143, 148, 251, 1),
+                        Color.fromRGBO(143, 148, 251, .6),
+                      ],
+                    ),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Column(

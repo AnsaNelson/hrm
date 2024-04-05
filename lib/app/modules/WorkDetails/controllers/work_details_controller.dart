@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 
 class WorkDetailsController extends GetxController {
-  final List<Map<String, dynamic>> _workDetailsList = [
-    {'client': 'John', 'date': '2024-03-04', 'complete': false, 'pending': true},
-    // Add more work details as needed
-  ];
+   RxList<Client> clientList = <Client>[
+    Client('John Doe','app','730888888'),
+    Client('Jane Doe','logo','24442211344'),
+    Client('Alice Smith','web','332244555'),
+  ].obs;
 
-  List<Map<String, dynamic>> get workDetailsList => _workDetailsList;
+  final count = 0.obs;
 
   @override
   void onInit() {
@@ -23,3 +24,14 @@ class WorkDetailsController extends GetxController {
     super.onClose();
   }
 }
+
+class Client {
+  final String name;
+  final String work;
+  final String number;
+
+  Client(this.name, this.work, this.number);
+}
+
+
+

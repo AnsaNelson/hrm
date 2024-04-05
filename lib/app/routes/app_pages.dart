@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/ClientDetails/bindings/client_details_binding.dart';
 import '../modules/ClientDetails/views/client_details_view.dart';
+import '../modules/ClientWork/bindings/client_work_binding.dart';
+import '../modules/ClientWork/views/client_work_view.dart';
 import '../modules/Login/bindings/login_binding.dart';
 import '../modules/Login/views/login_view.dart';
 import '../modules/Profile/bindings/profile_binding.dart';
@@ -41,8 +43,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.WORK_DETAILS,
-      page: () =>  WorkDetailsView(),
+      page: () => WorkDetailsView(),
       binding: WorkDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CLIENT_WORK,
+      page: () => const ClientWorkView(),
+      binding: ClientWorkBinding(),
     ),
   ];
 }

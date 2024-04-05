@@ -1,132 +1,165 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/network/network_model/res/login_res';
 import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
+
 class LoginView extends GetView<LoginController> {
   LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.put(LoginController());
+    Get.put(LoginStaffRes());
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'WELCOME ',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              showMenuOptions(context);
+            },
+          ),
+        ],
+      ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: <Widget>[
-               CircleAvatar(
-                radius: 80,
-                
-                child: Image.asset('asset/image/logo.png'),
-              ),
-              Padding(
-                padding: EdgeInsets.all(30.0),
-                child: Form(
-                  key: controller.formKey,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 80,
+                  child: Image.asset('asset/image/logo.png'),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.all(20),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: Color.fromRGBO(143, 148, 251, 1),
+                      TextFormField(
+                        controller: controller.emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromRGBO(143, 148, 251, 1),
+                            ),
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(143, 148, 251, .2),
-                              blurRadius: 20.0,
-                              offset: Offset(0, 10),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Color.fromRGBO(143, 148, 251, 1),
-                                  ),
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: controller.emailController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your email or phone number';
-                                  }
-                                  // Add more email validation if needed
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Email or Phone number",
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: controller.passwordController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your password';
-                                  }
-                                  // Add more password validation if needed
-                                  return null;
-                                },
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Password",
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 30),
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(143, 148, 251, 1),
-                              Color.fromRGBO(143, 148, 251, .6),
-                            ],
-                          ),
-                        ),
-                        child: Center(
-                          child: TextButton(
-                            onPressed: () => controller.login(context),
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          hintText: "Email",
+                          hintStyle: TextStyle(
+                            color: Colors.grey[700],
                           ),
                         ),
                       ),
                       SizedBox(height: 20),
+                      Obx(() => TextFormField(
+                            controller: controller.passwordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+                              return null;
+                            },
+                            obscureText: !controller.showPassword.value,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(143, 148, 251, 1),
+                                ),
+                              ),
+                              hintText: "Password",
+                              hintStyle: TextStyle(
+                                color: Colors.grey[700],
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.showPassword.toggle();
+                                  print('sdfsdf');
+                                },
+                                icon: Icon(
+                                  !controller.showPassword.value
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.grey[700],
+                                ),
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                 ),
-              )
-            ],
+                SizedBox(height: 30),
+                Container(
+                  height: 50,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(143, 148, 251, 1),
+                        Color.fromRGBO(143, 148, 251, .6),
+                      ],
+                    ),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () => controller.onClickLogin(),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  void showMenuOptions(BuildContext context) {
+    showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(0, 100, 0, 0),
+      items: [
+        PopupMenuItem(
+          child: ListTile(
+            title: Text('Admin'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        PopupMenuItem(
+          child: ListTile(
+            title: Text('Staff'),
+            onTap: () {
+              // Handle staff selection
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ],
     );
   }
 }
