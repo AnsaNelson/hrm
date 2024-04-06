@@ -13,12 +13,7 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    nameController.text = 'Anza Nelson';
-    emailController.text = 'ansa@gmail.com';
-    phoneNumberController.text = '+1234567890';
-    joiningDate.value = '2022-01-01';
-    dob.value = '2002/3/05';
-    salary.value = '10000';
+  
     super.onInit();
   }
 

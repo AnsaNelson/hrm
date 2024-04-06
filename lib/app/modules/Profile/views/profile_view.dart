@@ -6,9 +6,14 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
+  
+
 
   @override
   Widget build(BuildContext context) {
+  final  data=Get.arguments;
+  print(data);
+    
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -16,12 +21,12 @@ class ProfileView extends GetView<ProfileController> {
           child: Icon(Icons.arrow_back)),
         title: Text('Profile Page'),
       ),
-      body: const SingleChildScrollView(
+      body:  SingleChildScrollView(
         child: Center(
           child:  Column(
             children: [CircleAvatar(
               radius: 80,
-              // child: Image.asset('asset/image/pic.jpg'),
+              backgroundImage: NetworkImage(data.image)
             ),
              Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +42,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "Ansa Nelson",
+                          data.name,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -56,7 +61,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "ansa@gmail.com",
+                          data.email,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -75,7 +80,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "Kurisingal House ,Munambam",
+                          data.address,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -94,7 +99,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "05/03/2002",
+                          data.dateofbirth,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -113,7 +118,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10), 
                         Text(
-                          "10/01/2024",
+                          data.joiningdate,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -132,7 +137,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10), 
                         Text(
-                          "10000",
+                          data.salary,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -151,7 +156,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "7306310670",
+                          data.phone,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -159,24 +164,24 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                 ),
                 SizedBox(height: 10),
-                SizedBox(
-                  height: 70,
-                  child: Card(
-                    child: Row(
-                      children: [
-                        Text(
-                          "Password:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 10), // Adjust the width as needed
-                        Text(
-                          "ansa@123",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   height: 70,
+                //   child: Card(
+                //     child: Row(
+                //       children: [
+                //         Text(
+                //           "Password:",
+                //           style: TextStyle(fontWeight: FontWeight.bold),
+                //         ),
+                //         SizedBox(width: 10), // Adjust the width as needed
+                //         Text(
+                //           "ansa@123",
+                //           style: TextStyle(fontWeight: FontWeight.bold),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             )
             

@@ -3,6 +3,7 @@ import 'package:flutter_application_1/app/network/network_model/dioclient.dart';
 enum EndPoints{
 login,
 home,
+client,
 }
 extension EndPointData on EndPoints {
   String path() {
@@ -11,7 +12,9 @@ extension EndPointData on EndPoints {
       case EndPoints.login:
       path="api/admin/user/login"; 
       case EndPoints.home:
-      path="api/admin/user/staff";    
+      path="api/admin/user/staff/single";
+       case EndPoints.client:
+      path="api/admin/client/clients/department/digital marketting";    
       }
       return path;
     }
@@ -21,6 +24,8 @@ ReqType type() {
       case EndPoints.login:
         type = ReqType.POST;
         case EndPoints.home:
+        type = ReqType.GET;
+        case EndPoints.client:
         type = ReqType.GET;
     }
     return type;
@@ -32,6 +37,9 @@ ReqType type() {
         hasToken = false;
         break;
         case EndPoints.home:
+        hasToken = true;
+        break;
+        case EndPoints.client:
         hasToken = false;
         break;
     }
