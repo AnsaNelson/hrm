@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/home/views/home_view.dart';
 import 'package:flutter_application_1/app/network/network_model/repo/auth_repo.dart';
 import 'package:flutter_application_1/app/network/network_model/req/login_req.dart';
-import 'package:flutter_application_1/app/network/network_model/res/login_res';
+import 'package:flutter_application_1/app/network/network_model/res/login_res.dart';
 import 'package:get/get.dart';
 
 

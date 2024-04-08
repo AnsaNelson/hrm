@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/network/network_model/res/login_res';
+import 'package:flutter_application_1/app/network/network_model/res/login_res.dart';
 import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 

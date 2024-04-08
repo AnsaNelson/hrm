@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/app/data/url.dart';
 import 'package:flutter_application_1/app/network/network_model/endpoints.dart';
-import 'package:flutter_application_1/app/network/network_model/res/login_res';
+import 'package:flutter_application_1/app/network/network_model/res/login_res.dart';
 import 'package:get/get.dart' as G;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 

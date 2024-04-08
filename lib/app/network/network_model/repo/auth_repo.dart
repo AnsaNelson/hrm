@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_application_1/app/network/network_model/dioclient.dart';
 import 'package:flutter_application_1/app/network/network_model/endpoints.dart';
 import 'package:flutter_application_1/app/network/network_model/req/login_req.dart';
-import 'package:flutter_application_1/app/network/network_model/res/login_res';
+import 'package:flutter_application_1/app/network/network_model/res/login_res.dart';
 
 class AuthRepo{
   final DioClient dioClient = DioClient(Dio());
