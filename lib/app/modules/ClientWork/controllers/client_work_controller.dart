@@ -1,9 +1,32 @@
+import 'package:flutter_application_1/app/modules/home/views/home_view.dart';
+import 'package:flutter_application_1/app/network/network_model/repo/client.dart';
+import 'package:flutter_application_1/app/network/network_model/req/workstatus_req.dart';
 import 'package:get/get.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class ClientWorkController extends GetxController {
-  //TODO: Implement ClientWorkController
+  
+     RxString dropdownoptionValue = 'Business Card'.obs;
+   
+
+
+
+ final List<String> dropdownOptions = <String>[
+  'Starting',
+  'Complete',
+  'Pending',
+];
+
 
   final count = 0.obs;
+
+ String? name;
+ String? businessName;
+ String? description;
+ String? phoneNumber;
+ String? department;
+ String? date;
+ String? sId;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +42,27 @@ class ClientWorkController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+ void submitUpdate(sId) async {
+  Clientview repo = Clientview();
+
+    final response = await repo.addwork(
+      WorkstatusReq(
+        workStatus: dropdownoptionValue.value,
+        name: name,
+        date: date,
+        department: department,
+        description: description,
+        phoneNumber: phoneNumber,
+        businessName: businessName,
+      ),
+      sId,
+      
+    );
+
+    if (response != null && response.error == null) {
+      Get.offAll(HomeView());
+    }
+
+}
+
 }

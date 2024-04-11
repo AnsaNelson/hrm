@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/WorkDetails/views/work_details_view.dart';
-
 import 'package:flutter_application_1/app/widget/topcontainer.dart';
-
 import 'package:get/get.dart';
-
 
 import '../controllers/client_work_controller.dart';
 
 class ClientWorkView extends GetView<ClientWorkController> {
-  const ClientWorkView({Key? key}) : super(key: key);
+ const ClientWorkView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
+   List<String?> data = Get.arguments;
+controller.name = data[0]?.toString() ?? "";
+controller.businessName = data[1]?.toString() ?? "";
+controller.description = data[5]?.toString() ?? "";
+controller.date = data[2]?.toString() ?? "";
+controller.department = data[3]?.toString() ?? "";
+controller.phoneNumber = data[4]?.toString() ?? "";
+
+    print(controller.name);
+    Get.put(ClientWorkController());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -33,19 +41,12 @@ class ClientWorkView extends GetView<ClientWorkController> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            // CircleAvatar(
-                            //   backgroundColor: const Color.fromARGB(255, 239, 240, 243),
-                            //   radius: 35.0,
-                            //   backgroundImage: AssetImage(
-                            //     'assets/images/avatar.png',
-                            //   ),
-                            // ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Container(
-                                  child: const Text(
-                                    'Client Name',
+                                  child: Text(
+                                    controller.name.toString(),
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                       fontSize: 22.0,
@@ -55,8 +56,8 @@ class ClientWorkView extends GetView<ClientWorkController> {
                                   ),
                                 ),
                                 Container(
-                                  child: const Text(
-                                    'Business Name',
+                                  child: Text(
+                                    controller.businessName.toString(),
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -92,7 +93,7 @@ class ClientWorkView extends GetView<ClientWorkController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Description Title',
+                  'DESCRIPTION',
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -101,57 +102,55 @@ class ClientWorkView extends GetView<ClientWorkController> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Description text goes here...',
+                    controller.description.toString(),
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.black87,
                     ),
                   ),
                   SizedBox(height: 20),
-                 InkWell(
-                  onTap: ()=>{
-                   Get.to('')
-                  },
-                   child: Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: [
-                       SizedBox(
-                        width: 100,
-                        height: 50,
-                         child: Container(
-                          
-                          decoration: BoxDecoration(
-                           gradient: LinearGradient(
-                          colors: [
-                            Color.fromRGBO(143, 148, 251, 1),
-                            Color.fromRGBO(143, 148, 251, .6),
-                          ],
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(gradient: LinearGradient(colors: [
+                          Color.fromRGBO(143, 148, 251, 1),
+                          Color.fromRGBO(143, 148, 251, .6),
+                        ], )),
+                        child: DropdownMenu<String>(
+                          hintText: 'Select Status',
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          initialSelection: controller.dropdownOptions.first,
+                          onSelected: (String? value) {
+                            controller.dropdownoptionValue.value = value!;
+                            print(value);
+                          },
+                          dropdownMenuEntries: controller.dropdownOptions
+                              .map<DropdownMenuEntry<String>>((String value) {
+                            return DropdownMenuEntry<String>(
+                                value: value, label: value);
+                          }).toList(),
                         ),
-                            shape: BoxShape.rectangle,
-                           
-                         borderRadius: BorderRadius.circular(5)
+                      ),
+                      InkWell(
+                        onTap: () => controller.submitUpdate(data[6]?.toString() ?? ""),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 3,
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(  
+                              colors: [
+                                Color.fromRGBO(143, 148, 251, 1),
+                                Color.fromRGBO(143, 148, 251, .6),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Center(child: Text("Pending")),
-                         ),
-                       ),
-                       SizedBox(
-                        width: 100,
-                        height: 50,
-                         child: Container(
-                          decoration: BoxDecoration( gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(246, 246, 247, 1),
-                              Color.fromRGBO(163, 202, 241, 0.6),
-                            ],
-                          ),
-                          shape: BoxShape.rectangle,
-                          ),
-                          child: Center(child: Text("Starting date")),
-                         ),
-                       )
-                     ],
-                   ),
-                 )
+                          child: Center(child: Text("Submit")),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

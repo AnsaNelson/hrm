@@ -25,7 +25,7 @@ class DioClient {
     required EndPoints endPoints,
     Map<String, dynamic>? data,
     Map<String, dynamic>? headers,
-    String? queryParameters,
+    String? queryParameters,  
   }) async {
     Response response;
     if (headers != null) {
@@ -55,7 +55,7 @@ class DioClient {
             data: data,
           );
           break;
-        case ReqType.PATCH:
+        case ReqType.PUT:
    response = await _dio.patch(
             queryParameters != null
                 ? "$BASE_URl/${endPoints.path()}/$queryParameters"
@@ -105,6 +105,7 @@ class DioClient {
 enum ReqType {
   GET,
   POST,
-  PATCH,
+  PUT,
   DELETE,
+  PATCH,
 }

@@ -126,7 +126,7 @@ class HomeView extends GetView<HomeController> {
         Get.toNamed('/client-details',arguments: data.department);
         break;
       case 'Work Details':
-        Get.toNamed('/work-details');
+        Get.toNamed('/work-details',arguments: data.department);
         break;
       case 'Logout':
         Get.toNamed('/login');

@@ -1,11 +1,10 @@
+import 'package:flutter_application_1/app/network/network_model/repo/client.dart';
+import 'package:flutter_application_1/app/network/network_model/res/clientview.dart';
 import 'package:get/get.dart';
 
 class WorkDetailsController extends GetxController {
-   RxList<Client> clientList = <Client>[
-    Client('John Doe','app','730888888'),
-    Client('Jane Doe','logo','24442211344'),
-    Client('Alice Smith','web','332244555'),
-  ].obs;
+  final department=Get.arguments;
+  
 
   final count = 0.obs;
 
@@ -23,15 +22,15 @@ class WorkDetailsController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  Future<ClientviewRes?>fetch(department)async{
+     Clientview repo=Clientview();
+    final response = await repo.getStaff();
+    return response;
+    
+  }
 }
 
-class Client {
-  final String name;
-  final String work;
-  final String number;
 
-  Client(this.name, this.work, this.number);
-}
 
 
 

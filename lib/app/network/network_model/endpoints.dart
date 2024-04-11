@@ -4,6 +4,7 @@ enum EndPoints{
 login,
 home,
 client,
+workstatus,
 }
 extension EndPointData on EndPoints {
   String path() {
@@ -13,8 +14,10 @@ extension EndPointData on EndPoints {
       path="api/admin/user/login"; 
       case EndPoints.home:
       path="api/admin/user/staff/single";
-       case EndPoints.client:
-      path="api/admin/client/clients/department/digital marketting";    
+      case EndPoints.client:
+      path="api/admin/client/clients/department/digital marketting"; 
+      case EndPoints.workstatus:
+      path="api/admin/client/updateWorkStatus";    
       }
       return path;
     }
@@ -27,6 +30,8 @@ ReqType type() {
         type = ReqType.GET;
         case EndPoints.client:
         type = ReqType.GET;
+        case EndPoints.workstatus:
+        type = ReqType.PUT;
     }
     return type;
     }
@@ -40,6 +45,9 @@ ReqType type() {
         hasToken = true;
         break;
         case EndPoints.client:
+        hasToken = false;
+        break;
+        case EndPoints.workstatus:
         hasToken = false;
         break;
     }
