@@ -14,7 +14,7 @@ class ClientDetailsView extends GetView<ClientController> {
     final department=Get.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Client Form')),
+        title: Center(child: Text('Clients List',style: TextStyle(fontWeight: FontWeight.bold),)),
       ),
       body: FutureBuilder<ClientviewRes?>(
         future: controller.fetchclient(department),

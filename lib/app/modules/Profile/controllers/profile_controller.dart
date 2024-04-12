@@ -17,12 +17,5 @@ class ProfileController extends GetxController {
     super.onInit();
   }
 
-  void updateProfile() {
-    // Update the data when the "Update" button is clicked
-    nameController.text = 'Updated Name';
-    emailController.text = 'updated.email@example.com';
-    phoneNumberController.text = '+9876543210';
-  }
-
   void increment() => count.value++;
 }

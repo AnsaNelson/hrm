@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/app/modules/Profile/views/profile_view.dart';
 import 'package:flutter_application_1/app/network/network_model/res/home_res.dart';
 import 'package:get/get.dart';
+import 'package:motion_toast/motion_toast.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -10,7 +11,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
 
-    final List<String> items = ['Profile', 'Client Details', 'Work Details', 'Logout'];
+    final List<String> items = ['Profile', 'Clients List', 'Work Details', 'Logout'];
     final List<IconData> icons = [Icons.person, Icons.business, Icons.work, Icons.exit_to_app];
     Get.put(HomeController());
     return Scaffold(
@@ -122,7 +123,7 @@ class HomeView extends GetView<HomeController> {
       case 'Profile':
       Get.toNamed('/profile',arguments: data);
       break;
-      case 'Client Details':
+      case 'Clients List':
         Get.toNamed('/client-details',arguments: data.department);
         break;
       case 'Work Details':
